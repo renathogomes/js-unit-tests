@@ -9,9 +9,44 @@
     - average([2, 2]) // Retorno: 2;
     - average([1, 1]) // Retorno: 1;
     - average([1, '2']) // Retorno: undefined;
-    
 */
+const verifyIsUnderfined = (parametro) => {
+  if (parametro === undefined) {
+    throw new Error('Adicione um Array');
+  }
+};
 
-const average = () => {};
+const verifyIsNumber = (parametro) => {
+  for (let numero of parametro) {
+    if (typeof numero !== 'number') {
+      throw new Error('Os elemntos do Array precisam ser numéricos');
+    }
+  }
+};
+
+const verifyIsAlone = (parametro) => {
+  if (parametro[0] === undefined) {
+    throw new Error('O Array não pode ser vazio');
+  }
+};
+
+const average = (parametro) => {
+  try {
+    verifyIsUnderfined(parametro);
+    verifyIsNumber(parametro);
+    verifyIsAlone(parametro);
+    let soma = 0;
+    let mediaArray = [];
+    let media;
+    for (let index = 0; index < parametro.length; index += 1) {
+      soma += parametro[index];
+      mediaArray.push(parametro[index]);
+      media = soma / mediaArray.length;
+    }
+    return Math.round(media);
+  } catch (erro) {
+    return undefined;
+  }
+};
 
 module.exports = average;
