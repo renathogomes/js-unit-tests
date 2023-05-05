@@ -35,19 +35,27 @@
 */
 
 const calculator = (number1, number2) => ({
-  sum: Math.round(number1 + number2),
-  mult: Math.round(number1 * number2),
-  div: Math.round(number1 / number2),
-  sub: Math.round(number1 - number2),
+  sum: Math.floor(number1 + number2),
+  mult: Math.floor(number1 * number2),
+  div: Math.floor(number1 / number2),
+  sub: Math.floor(number1 - number2),
 });
 
 const arrayGenerator = (type, object) => {
-  let resultado;
-  if (type.value === 'key') {
-    for (let obj of object.value) {
-      resultado.push(obj);
+  if (type === 'keys') {
+    return Object.keys(object);
     }
+
+  if (type === 'values') {
+    return Object.values(object);
+    }
+
+  if (type === 'entries') {
+    return Object.entries(object);
   }
 };
+
+console.log(calculator(5, 2));
+console.log(arrayGenerator('entries', calculator(1, 2)));
 
 module.exports = { calculator, arrayGenerator };
